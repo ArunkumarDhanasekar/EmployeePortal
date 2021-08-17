@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 })
 export class SharedService {
   readonly APIUrl = 'http://localhost:64039/api';
-  readonly PhotoUrl = 'http://localhost:64039/Photos';
+  readonly PhotoUrl = 'http://localhost:64039/Photos/';
   constructor(private http: HttpClient) {}
 
   getDepartmentList(): Observable<any[]> {
-    return this.http.get<any>(this.APIUrl + '/Department');
+    return this.http.get<any>(this.APIUrl + '/department');
   }
 
   addDepartment(val: any) {
@@ -20,7 +20,7 @@ export class SharedService {
     return this.http.put(this.APIUrl + '/Department', val);
   }
   deleteDepartment(val: any) {
-    return this.http.delete(this.APIUrl + '/Department/', val);
+    return this.http.delete(this.APIUrl + '/Department/' + val);
   }
 
   getEmployeeList(): Observable<any[]> {
@@ -34,14 +34,14 @@ export class SharedService {
     return this.http.put(this.APIUrl + '/Employee', val);
   }
   deleteEmployee(val: any) {
-    return this.http.delete(this.APIUrl + '/Employee/', val);
+    return this.http.delete(this.APIUrl + '/Employee/' + val);
   }
 
   uploadPhoto(val: any) {
     return this.http.post(this.APIUrl + '/Employee/SaveFile', val);
   }
 
-  getAllDepartmentnames(): Observable<any[]> {
+  getAllDepartmentNames(): Observable<any[]> {
     return this.http.get<any[]>(
       this.APIUrl + '/Employee/GetAllDepartmentNames'
     );
